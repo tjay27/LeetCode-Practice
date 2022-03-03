@@ -6,9 +6,9 @@ public:
             return 0;
         int possible=0;
         int i=0;
-        
+        int d=nums[1]-nums[0]; 
         while(i<nums.size()-2){
-            int d=nums[i+1]-nums[i];
+            //int d=nums[i+1]-nums[i];
             int j=i+1;
             int len=2;
             while(j<nums.size()-1){
