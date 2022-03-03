@@ -18,7 +18,9 @@ public:
                     i++;
                 }
                 else{
+                    d=nums[j+1]-nums[j];
                     i++;
+                    j++;
                     break;
                 }
             }
