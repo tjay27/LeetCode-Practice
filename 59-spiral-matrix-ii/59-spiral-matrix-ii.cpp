@@ -6,10 +6,7 @@ public:
             vector<int> p(n);
             arr.push_back(p);
         }
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++)
-                cout<<arr[i][j];
-        }
+        
         int n2=(n+1)/2;
         int c=1;
         for(int i=0;i<n2;i++){
