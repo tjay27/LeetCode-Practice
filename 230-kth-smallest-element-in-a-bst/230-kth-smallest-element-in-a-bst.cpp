@@ -15,15 +15,11 @@ public:
         hlpr(root,vals);
         
         while(k>1){
-            cout<<vals.front();
+            //cout<<vals.front();
             vals.pop();
             k--;
         }
-        int x=vals.front();
-        while(!vals.empty()){
-            cout<<vals.front();
-            vals.pop();
-        }
-        return x;
+        
+        return vals.front();
     }
 };
