@@ -14,8 +14,8 @@ public:
         int j=nums.size()-1;//end ptr
         
         while(i<j){
-            cout<<nums[i].first<<' '<<nums[j].first<<endl;
-            cout<<i<<' '<<j<<endl;
+           // cout<<nums[i].first<<' '<<nums[j].first<<endl;
+            //cout<<i<<' '<<j<<endl;
             int sum=nums[i].first+nums[j].first;
             if(sum==k){
                 ans.push_back(nums[i].second);
