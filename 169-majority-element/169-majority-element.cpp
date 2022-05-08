@@ -2,7 +2,7 @@ class Solution {
 public:
     #include<unordered_map>
     //time-o(n), space-o(n)
-    int majorityElement(vector<int>& nums) {
+    int majorityElement(vector<int>& arr) {
       /*  int occReq=nums.size()/2;
         unordered_map<int,int> mp;
         for(int i=0;i<nums.size();i++){
@@ -21,21 +21,28 @@ public:
         return nums[nums.size()/2];*/
         
        //time-o(n), space-o(1), Moore's voting algo
-        
-        int count=0;//chances of it being a maj
-        int maj=nums[0];
-        for(int i=0;i<nums.size();i++){
-            if(maj==nums[i])
+        int n=arr.size();
+        int count=1;
+        int maj=arr[0];
+        for(int i=1;i<n;i++){
+            if(maj==arr[i])
                 count++;
             else
                 count--;
             if(count==0){
-                maj=nums[i];
-                count++;
-            }
+                maj=arr[i];
+                count++;}
         }
-        return maj;
         
+        return maj;
+        int freq=0;
+        for(int i=1;i<n;i++){
+            if(arr[i]==maj)
+                freq++;
+        }
+        //cout<<int(n/2);
+        //return maj;
+        return freq>int(n/2)?maj:0;
         //find freq of maj and check if its greater than n/2
         /* not needed cuz given in que Maj element exists for sure
         for(int i=0;i<nums.size();i++){
