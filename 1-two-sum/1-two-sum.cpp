@@ -1,6 +1,6 @@
 class Solution {
 public:
-    static bool cmp(pair<int,int> a, pair<int,int> b){
+    /*static bool cmp(pair<int,int> a, pair<int,int> b){
         return a.first<b.first;
     }
     vector<int> twoSum(vector<int>& arr, int k) {
@@ -29,6 +29,26 @@ public:
             
         }
         
+        return ans;
+    }*/
+    
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> duplicate,ans;
+        duplicate=nums;
+        int len=nums.size();
+        int low(0),high(len-1);
+        sort(nums.begin(),nums.end());
+        while(low<high){
+            int sum(nums[low]+nums[high]);
+            if(target==sum) break;
+            else if(target>sum) low++;
+            else if(sum > target) high--;
+        }
+        
+        for(int i=0;i<len;i++){
+            if(nums[low]==duplicate[i]) ans.push_back(i);
+            else if (nums[high]==duplicate[i]) ans.push_back(i);
+        }
         return ans;
     }
 };
