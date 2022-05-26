@@ -16,12 +16,8 @@ public:
             int index=abs(arr[i])-1;  
             int flag=0;
             if(arr[index]<0)
-                flag=1;
-            arr[index]*=-1;
-            if(flag==1)
                 ans.push_back(index+1);
-            
-            
+            arr[index]*=-1;
         }
         return ans;
         
