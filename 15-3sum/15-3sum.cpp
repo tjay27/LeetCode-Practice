@@ -128,39 +128,26 @@ public:
                     if(arr[i]+arr[j]==target){
                         vector<int> v={arr[k],arr[i],arr[j]};
                         ans.push_back(v);
-                       // cout<<k<<i<<j;
-                        //int flag=0;
                         i++;
-                        while(i<n&&arr[i]==arr[i-1])
+                        while(i<j&&arr[i]==arr[i-1])
                             i++;
-                        // while(arr[i]==arr[i+1]){
-                        //     flag=1;
-                        //     i++;
-                        // }
-                        // if(!flag)
-                        //     i++;
+                        
                         j--;
-                        while(j>0&&arr[j]==arr[j+1])
+                        while(i<j&&arr[j]==arr[j+1])
                             j--;
                         
-                        // flag=0;
-                        // while(arr[j]==arr[j-1]){
-                        //     flag=1;
-                        //     j--;
-                        // }
-                        // if(!flag)
-                        //     j--;
+
                     }   
                     
                     else if(arr[i]+arr[j]<target){
                         i++;
-                        while(i<n&&arr[i]==arr[i-1])
+                        while(i<j&&arr[i]==arr[i-1])
                             i++;
                     }
                     
                     else if(arr[i]+arr[j]>target){
                         j--;
-                        while(j>0&&arr[j]==arr[j+1])
+                        while(i<j&&arr[j]==arr[j+1])
                             j--;
                     }
                     
