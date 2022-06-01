@@ -61,34 +61,18 @@ public:
                 noOfRoads[roads[j][i]].first++;
             }
         }
-        //for(int i=0;i<n;i++){
-         //   cout<<noOfRoads[i].second<<' '<<noOfRoads[i].first<<endl;
-        //}
-        
         sort(noOfRoads,noOfRoads+n,cmp);
-        for(int i=0;i<n;i++){
-            //cout<<noOfRoads[i].second<<' '<<noOfRoads[i].first<<endl;
-        }
-        
         unordered_map<int,int> mp;
         int k=n;
         for(int i=0;i<n;i++){
-            mp[noOfRoads[i].second]=k--;
-          //  cout<<noOfRoads[i].second<<' '<<mp[noOfRoads[i].second]<<endl;
-            
+            mp[noOfRoads[i].second]=k--;  
         }
         long long ans=0;
         for(int j=0;j<roads.size();j++){
             int x=0;
             for(int i=0;i<2;i++){
-                //cout<<i<<endl;
-                //x+=mp[roads[j][i]];
                 ans+=mp[roads[j][i]];
-                //cout<<ans;
-                //cout<<n;
-            }
-           //cout<<x<<endl;;
-            
+            }   
         }
         return ans;
         
