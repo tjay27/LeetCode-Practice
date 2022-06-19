@@ -1,38 +1,33 @@
-
 class BSTIterator {
-    vector<int> v;
-    int i;
-    void inorder(TreeNode* root){
-        if(root==NULL)
-            return ;
-        inorder(root->left);
-        v.push_back(root->val);
-        inorder(root->right);
-        return ;
-    }
+    TreeNode* curr;
+    stack<TreeNode*> st;
+    
 public:
     BSTIterator(TreeNode* root) {
-        i=-1;
-        inorder(root);
+        curr=root;
+        while(curr!=NULL){
+            st.push(curr);
+            curr=curr->left;
+        }    
+        
     }
     
     int next() {
-        //if(hasNext())
-        return v[++i];
-        //return v[i];
+        curr=st.top();
+        int t=curr->val;
+        st.pop();
+        curr=curr->right;
+        while(curr!=NULL){
+            st.push(curr);
+            curr=curr->left;    
+        }
+        return t;
     }
     
     bool hasNext() {
-        cout<<i<<' ';
-        if(v.size()-1==i)
+        if(st.empty())
             return false;
         return true;
     }
 };
 
-/**
- * Your BSTIterator object will be instantiated and called as such:
- * BSTIterator* obj = new BSTIterator(root);
- * int param_1 = obj->next();
- * bool param_2 = obj->hasNext();
- */
