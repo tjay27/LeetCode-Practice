@@ -1,36 +1,40 @@
-/*class Solution {
+class Solution {
    int findPivot(vector<int>& arr, int si, int ei){
        //4 5 6 0 1 2
        //4 5 6 6 0
        //4 5 0 1 1 2
        //4 0 1 2 3 3
+       // 1 1 1 1 0
+       int zero=si;
        int pivot=-1;
        while(si<=ei){
            int mid=(si+ei)/2;
-           if(arr[mid]<arr[0]){
+           if(arr[mid]>=arr[0]){
+               si=mid+1;
+           }
+           else if(arr[mid]<arr[0]){
                //this can be pivot
                pivot=mid;
                ei=mid-1;
-           }
-           else{
-               si=mid+1;
            }
        }
        return pivot;
    } 
    bool binSearch(vector<int>& arr, int si, int ei,int target){
        //1 2 3 4 5 6 7
-       if(si<=ei){
+       while(si<=ei){
            int mid=(si+ei)/2;
+           cout<<mid;
            if(target==arr[mid]){
                return true;
            }
            else if(target<arr[mid]){
                ei=mid-1;
            }
-           else{
+           else if(target>arr[mid]){
                si=mid+1;
            }
+          // cout<<"si: "<<si<<' '<<"ei: "<<' '<<ei<<endl;
        }
        return false;
    }
@@ -43,30 +47,28 @@ public:
         while(si+1<ei && arr[si]==arr[si+1])
             si++;
         //find the pivot point
-        while(ei>0 && arr[ei]==arr[0])
+        while(ei>si && arr[ei]==arr[0])
             ei--;
         int pivot=findPivot(arr,si,ei);
         //do bin search in first or second half
-        cout<<si<<' '<<ei<<endl;
-        cout<<pivot<<endl;
+        //cout<<si<<' '<<ei<<endl;
+        //cout<<pivot<<endl;
+        cout<<si<<" "<<ei<<endl;
         if(pivot==-1)
-            return binary_search(arr.begin(),arr.end(),target);
-       
-        //4 5 0 1 1 2
-        //1
+            return binSearch(arr,si,ei,target);
         
-        if(target>arr[pivot]){
+        if(target>arr[ei]){
             //in the first half
-            return binSearch(arr,0,pivot-1,target);
+            return binSearch(arr,si,pivot-1,target);
         }
         else{
-            return binSearch(arr,pivot,n-1,target);
+            return binSearch(arr,pivot,ei,target);
         }
         
         return false;
     }
-};*/
-class Solution {
+};
+/*class Solution {
 public:
     bool search(vector<int>& nums, int target) {
         
@@ -98,7 +100,7 @@ public:
             }
         }
         
-        
+        cout<<pivot<<endl;
         if( pivot == -1 ) l = start , h = end; // if no pivot exits then search space is from start -e end
         else {
             if( target > nums[end] ) l = start , h = pivot-1; // search space second half
@@ -116,4 +118,4 @@ public:
         return false;
         
     }
-};
+};*/
