@@ -78,6 +78,7 @@ class Solution {
     }
     */
     //[0 3 1 6 2 7 7]
+    //total number of operations 
     int lis_rec(vector<int>& nums, int curr, int prev, int n){
         //base case
         //curr 0 se n
@@ -159,22 +160,40 @@ class Solution {
         return dp[n][n];
     }
     
+    //space optimitisation
+    //binary search
+    int lis_bin(vector<int>& arr,int n){
+        int i=1;
+        vector<int> seq;
+        seq.push_back(arr[0]);
+        int k=1;
+        while(i<n){
+            if(arr[i]>seq[k-1]){
+                seq.push_back(arr[i]);
+                k++;
+            }
+            else{
+                vector<int>::iterator lower=lower_bound(seq.begin(),seq.end(),arr[i]);
+                if(lower==seq.end()){
+                    seq.push_back(arr[i]);
+                    k++;
+                }
+                else{
+                    seq[lower-seq.begin()]=arr[i];
+                }
+            }
+            i++;
+        }
+        return k;
+    }
+    
     
 public:
     int lengthOfLIS(vector<int>& nums) {
         int n=nums.size();
         //return lis_rec(nums,0,-1,n);
         vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
-        // int a=lis_mem2(nums, n-1, n, n, dp);
-        // for(int i=0;i<=n;i++){
-        //     for(int j=0;j<=n;j++){
-        //         cout<<dp[i][j]<<' ';
-        //     }
-        //     cout<<endl;
-        // }
-        // return a;
-        return lis_dp2(nums,n);
-        //lis rec, lis mem2, lis mem working
-        //now convert lis mem2 into dp.
+        //return lis_dp2(nums,n);
+        return lis_bin(nums,n);
     }
 };
