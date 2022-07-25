@@ -9,7 +9,19 @@ int merge(vector<int>& arr,int si1,int ei1, int si2,int ei2){
     //if arr[j]>INT_MAX/2 then dont' do.
     if(arr[j]<=INT_MAX/2){
         while(i<=ei1&&j<=ei2){
-            if(arr[i]>2*(long)arr[j]){
+           // -inf/2, -inf, -inf/2-1, -inf-1
+            // [-inf,+inf]
+            // [-inf,-inf/2]
+            // [-2inf,-inf]
+            //arr[j]==int_max
+            // inf/2, inf/2+1
+            //[inf/2,inf]
+            //[inf,2inf]
+            if(arr[j]<=INT_MIN/2){
+                invPairs+=ei1-i+1;
+                j++;
+            }
+            else if(arr[i]>2*(long)arr[j]){
                 invPairs+=ei1-i+1;
                 j++;
             }    
