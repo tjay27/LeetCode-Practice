@@ -79,7 +79,7 @@ class Solution {
     */
     //[0 3 1 6 2 7 7]
     //total number of operations 
-    int lis_rec(vector<int>& nums, int curr, int prev, int n){
+    /*int lis_rec(vector<int>& nums, int curr, int prev, int n){
         //base case
         //curr 0 se n
         //prev -1 se n-1
@@ -158,11 +158,12 @@ class Solution {
         }
         
         return dp[n][n];
-    }
+    }*/
     
     //space optimitisation
     //binary search
-    int lis_bin(vector<int>& arr,int n){
+    int lis_bin(vector<int>& arr){
+        int n=arr.size();
         int i=1;
         vector<int> seq;
         seq.push_back(arr[0]);
@@ -190,10 +191,9 @@ class Solution {
     
 public:
     int lengthOfLIS(vector<int>& nums) {
-        int n=nums.size();
         //return lis_rec(nums,0,-1,n);
-        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        //vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
         //return lis_dp2(nums,n);
-        return lis_bin(nums,n);
+        return lis_bin(nums);
     }
 };
