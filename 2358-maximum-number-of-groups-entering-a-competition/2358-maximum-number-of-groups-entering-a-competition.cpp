@@ -1,14 +1,16 @@
 class Solution {
 public:
     int maximumGroups(vector<int>& grades) {
-        //3 5 6 7 10 12
-        //total grps will be less than n
-        //FINd that i jiske lie i(i+1)/2 is less than n
-        int i=grades.size();
+        int i=1; //no of kids in ith grp
+        int sum=0; //sum of all grps
+        int totalGrps=0;
         int n=grades.size();
-        while(i>0&&n<long(i)*long(i+1)/2){
-            i--;
+        //sum<=n
+        while(sum<n&&i<=n-sum){
+            sum+=i;
+            totalGrps++;
+            i++;
         }
-        return i;
+        return totalGrps;
     }
 };
