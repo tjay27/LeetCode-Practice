@@ -5,8 +5,6 @@ class Solution {
             return 1;
         if(endInd==-1)
             return 0;
-        if(target<0)
-            return 0;
         if(dp[endInd][target]!=-1)
             return dp[endInd][target];
         int take=0;
