@@ -10,7 +10,7 @@ public:
             //calculate the eating after each
             long hoursPresent=0;
             for(int i=0;i<piles.size();i++)
-                hoursPresent+=ceil(1.0*piles[i]/possibleSpeed);
+                hoursPresent+=ceil(double(piles[i])/possibleSpeed);
             if(hoursPresent<=hours){
                 maxSpeed=possibleSpeed;
             }
