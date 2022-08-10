@@ -79,6 +79,7 @@ class Solution {
     */
     //[0 3 1 6 2 7 7]
     //total number of operations 
+    //lis_rec finds the lis that ends at arr[curr] or lesser which has its previous as arr[prev].
     /*int lis_rec(vector<int>& nums, int curr, int prev, int n){
         //base case
         //curr 0 se n
@@ -188,12 +189,31 @@ class Solution {
         return k;
     }
     
+    int lis_pep(vector<int>& arr){
+        int n=arr.size();
+        vector<int> dp(n); //dp[i] that stores the longest increasing subsequence that ends at that arr[i].
+        //for the final ans take max of the overall value present
+        dp[0]=1;
+        int omax=0;
+        for(int i=0;i<n;i++){
+            int maxi=0;
+            for(int j=0;j<i;j++){
+                if(arr[j]<arr[i]){
+                    maxi=max(dp[j],maxi);
+                }
+            }
+            dp[i]=maxi+1;
+            omax=max(omax,dp[i]);
+        }
+        return omax;
+    }
     
 public:
     int lengthOfLIS(vector<int>& nums) {
         //return lis_rec(nums,0,-1,n);
         //vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
         //return lis_dp2(nums,n);
-        return lis_bin(nums);
+        return lis_pep(nums);
+       // return lis_bin(nums);
     }
 };
