@@ -16,12 +16,8 @@ class Solution {
         }
         
         return lcs[i1][i2];*/
-        
    // }
-public:
-    int longestCommonSubsequence(string text1, string text2) {
-        //RECURSIVE
-        /* base case
+    /*base case
         if(text1==""||text2=="")
             return 0;
         
@@ -35,11 +31,11 @@ public:
         
         int len1=longestCommonSubsequence(t1,text2);
         int len2=longestCommonSubsequence(text1,t2);
-        return max(len1,len2);*/
+        return max(len1,len2);
         
         //TOP DOWN APPROACH
         //store the repeated vals in lcs
-        /*int n1=size(text1);
+        int n1=size(text1);
         int n2=size(text2);
         int **lcs=new int*[n1];
         for(int i=0;i<n1;i++){
@@ -47,9 +43,9 @@ public:
             for(int j=0;j<n2;j++){
                 lcs[i][j]=-1;
             }
-        }
-        
-        return LCS(text1,text2,lcs,0,0); */       
+        }*/
+    /*
+        return LCS(text1,text2,lcs,0,0);     
         //BOTTOM UP APPROACH
         int n1=text1.size();
         int n2=text2.size();
@@ -89,13 +85,35 @@ public:
             }
         }
       //  cout<<"--------------";
-        /*for(int i=0;i<n1;i++){
+        for(int i=0;i<n1;i++){
             for(int j=0;j<n2;j++){
                 cout<<lcs[i][j]<<' ';
             }
             cout<<endl;
-        }*/
-        return lcs[n1-1][n2-1];
+        }
+        return lcs[n1-1][n2-1];*/
+    int lcs_rec(string s1, string s2, int m, int n){
+        if(m==0||n==0)
+            return 0;
+        if(s1[m-1]==s2[n-1])
+            return 1+lcs_rec(s1,s2,m-1,n-1);
+        return max(lcs_rec(s1,s2,m-1,n),lcs_rec(s1,s2,m,n-1));
+    }
+    int lcs_dp(string s1, string s2, int m, int n){
+        vector<vector<int>> dp(m+1,vector<int>(n+1,0));
+        for(int i=1;i<=m;i++){
+            for(int j=1;j<=n;j++){
+                if(s1[i-1]==s2[j-1])
+                    dp[i][j]=1+dp[i-1][j-1];
+                else
+                    dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+        return dp[m][n];
+    }
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        return lcs_dp(text1,text2,text1.length(),text2.length());
         
     }
 };
