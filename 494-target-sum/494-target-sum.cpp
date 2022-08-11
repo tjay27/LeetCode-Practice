@@ -10,26 +10,23 @@ public:
         if((s+target)%2!=0)
             return 0;
         int n=nums.size();
-       // vector<vector<int>> dp(n+1,vector<int>(sum+1,-1));
-        
-        //initialisation
-        
-        vector<int> prev(sum+1);
-        vector<int> curr(sum+1);
+       //initialisation 
+        // vector<int> prev(sum+1);
+        // vector<int> curr(sum+1);
+        vector<int> dp(sum+1);
         for(int i=0;i<=sum;i++){
-            prev[i]=0;
+            dp[i]=0;
         }
-        prev[0]=1;
+        dp[0]=1;
         for(int i=1;i<=n;i++){
-            for(int j=0;j<=sum;j++){
+            for(int j=sum;j>=0;j--){
                 if(nums[i-1]<=j){
-                    curr[j]=prev[j-nums[i-1]]+prev[j];
+                    dp[j]=dp[j-nums[i-1]]+dp[j];
                 }
                 else
-                    curr[j]=prev[j];
+                    dp[j]=dp[j];
             }
-            prev=curr;
         }
-        return curr[sum];
+        return dp[sum];
     }
 };
